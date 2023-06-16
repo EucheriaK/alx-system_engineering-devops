@@ -1,6 +1,12 @@
-#!/usr/bin/env bash
-# connect to a server Execute a command
+#configure ssh config
 
-exec { 'echo "PasswordAuthentication no\nIdentityFile ~/.ssh/school" >> /etc/ssh/ssh_config':
-        path    => '/bin/'
+file_line{'Turn off passwd auth':
+path => '/etc/ssh/ssh_config',
+line => 'PasswordAuthentication no'
+}
+
+file_line{'Declare identity file':
+path => '/etc/ssh/ssh_config',
+line => 'IdentityFile ~/.ssh/school'
+
 }
